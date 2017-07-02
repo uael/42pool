@@ -8,12 +8,21 @@ DIR_FILE=("syntax" "header" "speed_open" "generator-h")
 VIM_FILE="c.vim make_header.vim speed_open.vim generator_h.vim"
 DIRECTORY=("syntax" "plugin" "plugin" "plugin")
 INDEX=0
+USER=alucas-
+
+cat <<EOT >> ~/.bashrc
+export MAIL42=$USER@student.42.fr
+export USER42=$USER
+EOT
 
 for FILE in $VIM_FILE
 do
-	if [ ! -f $HOME/.vim/${DIRECTORY[$INDEX]}/$FILE ]; then
-		cp ${DIR_FILE[$INDEX]}/$FILE $HOME/.vim/${DIRECTORY[$INDEX]}
+	cp ${DIR_FILE[$INDEX]}/$FILE $HOME/.vim/${DIRECTORY[$INDEX]}
+	if [ ! -f $HOME/.vim/${DIRECTORY[$INDEX]}/$FILE ];
+	then
 		printf "Plugin $FILE \e[32minstalled.\e[0m\n"
+	else
+		printf "Plugin $FILE \e[32mupdated.\e[0m\n"
 	fi
 	INDEX=$((INDEX + 1))
 done
