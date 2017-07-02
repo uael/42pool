@@ -1,0 +1,19 @@
+#! /bin/bash
+
+
+/bin/mkdir -p $HOME/.vim/plugin
+/bin/mkdir -p $HOME/.vim/syntax
+
+DIR_FILE=("syntax" "header" "speed_open" "generator-h")
+VIM_FILE="c.vim make_header.vim speed_open.vim generator_h.vim"
+DIRECTORY=("syntax" "plugin" "plugin" "plugin")
+INDEX=0
+
+for FILE in $VIM_FILE
+do
+	if [ ! -f $HOME/.vim/${DIRECTORY[$INDEX]}/$FILE ]; then
+		cp ${DIR_FILE[$INDEX]}/$FILE $HOME/.vim/${DIRECTORY[$INDEX]}
+		printf "Plugin $FILE \e[32minstalled.\e[0m\n"
+	fi
+	INDEX=$((INDEX + 1))
+done
